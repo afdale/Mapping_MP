@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.agneshandayani.mapping_mp">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -11,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FormSubmit"></activity>
+        <activity android:name=".FormConfirmation"></activity>
+        <activity android:name=".FormUpdateIstirahatKedua" />
+        <activity android:name=".FormUpdateIstirahat" />
+        <activity android:name=".FormSubmit" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,10 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BarcodeScannerActivity"></activity>
-        <activity android:name=".Adapter"></activity>
-        <activity android:name=".Container"></activity>
-
+        <activity android:name=".BarcodeScannerActivity" />
+        <activity android:name=".Adapter" />
+        <activity android:name=".Container" />
+        <activity android:name=".FormUpdate" />
     </application>
 
 </manifest>

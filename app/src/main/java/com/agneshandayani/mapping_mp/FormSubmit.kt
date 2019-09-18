@@ -55,7 +55,7 @@ class FormSubmit : AppCompatActivity() {
         setContentView(R.layout.activity_form_submit)
 
         ref = FirebaseDatabase.getInstance().getReference().child("mapping").child("manpower")
-            .child("ABSEN")
+            .child("ABSENSIP1")
         kunci = getIntent().getStringExtra("key")
         //keterangan:masukin data ke firebase
 
@@ -127,8 +127,11 @@ class FormSubmit : AppCompatActivity() {
             Toast.makeText(this, "${valueshift}", Toast.LENGTH_LONG).show()
 
             savedata()
-            //val intent = Intent(this, Adapter::class.java)
-            }
+            val intent = Intent(this, Adapter::class.java)
+            startActivity(intent)
+            finish()
+
+        }
 
     }
 

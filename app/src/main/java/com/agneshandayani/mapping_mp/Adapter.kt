@@ -13,11 +13,13 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_form_submit.*
 import java.util.ArrayList
 
 class Adapter: AppCompatActivity() {
 
-    lateinit var submit: ImageButton
+
+    private var btnfinish: ImageButton? = null
 
     private var listSIP1 = ArrayList<Container>()
     private lateinit var listSIP1Adapter: BaseAdapter
@@ -35,11 +37,17 @@ class Adapter: AppCompatActivity() {
     var waktu:Long? = null
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.onprogress_submit)
 
+        btnfinish = findViewById<ImageButton>(R.id.btnFinish)
+        btnFinish.setOnClickListener {
 
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         try {
             val sip1ListView = findViewById<ListView>(R.id.alv)
@@ -48,14 +56,15 @@ class Adapter: AppCompatActivity() {
             val sik2ListView = findViewById<ListView>(R.id.dlv)
 
 
-            listSIP1Adapter = listSIP1Adapter(this, listSIP1)
-            listSIP2Adapter = listSIP2Adapter(this, listSIP2)
-            listSIK1Adapter = listSIK1Adapter (this, listSIK1)
-            listSIK2Adapter = listSIK2Adapter(this, listSIK2)
+            listSIP1Adapter = ListSIP1Adapter(this, listSIP1)
+            listSIP2Adapter = ListSIP2Adapter(this, listSIP2)
+            listSIK1Adapter = ListSIK1Adapter (this, listSIK1)
+            listSIK2Adapter = ListSIK2Adapter(this, listSIK2)
+
 
             sip1ListView.adapter = listSIP1Adapter
             sip1ListView.setOnItemClickListener { parent, view, position, id ->
-                val launch4 = Intent(this, BarcodeScannerActivity::class.java)
+                val launch4 = Intent(this, FormUpdate::class.java)
                 launch4.putExtra("asal", "manpower")
                 launch4.putExtra("op1", listSIP1[position].mop1)
                 launch4.putExtra("op2", listSIP1[position].mop2)
@@ -64,13 +73,15 @@ class Adapter: AppCompatActivity() {
                 launch4.putExtra("op5", listSIP1[position].mop5)
                 launch4.putExtra("mesin", listSIP1[position].mnomesin)
                 launch4.putExtra("key", listSIP1[position].mKey)
+                launch4.putExtra("valueshift", listSIP1[position].mvalueshift)
+
                 startActivity(launch4)
             }
 
 
             sip2ListView.adapter = listSIP2Adapter
             sip2ListView.setOnItemClickListener { parent, view, position, id ->
-                val launch4 = Intent(this, BarcodeScannerActivity::class.java)
+                val launch4 = Intent(this, FormUpdateIstirahat::class.java)
                 launch4.putExtra("asal", "manpower")
                 launch4.putExtra("op1", listSIP2[position].mop1)
                 launch4.putExtra("op2", listSIP2[position].mop2)
@@ -79,13 +90,15 @@ class Adapter: AppCompatActivity() {
                 launch4.putExtra("op5", listSIP2[position].mop5)
                 launch4.putExtra("mesin", listSIP2[position].mnomesin)
                 launch4.putExtra("key", listSIP2[position].mKey)
+
+                launch4.putExtra("valueshift", listSIP1[position].mvalueshift)
                 startActivity(launch4)
             }
 
 
             sik1ListView.adapter = listSIK1Adapter
             sik1ListView.setOnItemClickListener { parent, view, position, id ->
-                val launch4 = Intent(this, BarcodeScannerActivity::class.java)
+                val launch4 = Intent(this, FormUpdateIstirahatKedua::class.java)
                 launch4.putExtra("asal", "manpower")
                 launch4.putExtra("op1", listSIK1[position].mop1)
                 launch4.putExtra("op2", listSIK1[position].mop2)
@@ -94,12 +107,14 @@ class Adapter: AppCompatActivity() {
                 launch4.putExtra("op5", listSIK1[position].mop5)
                 launch4.putExtra("mesin", listSIK1[position].mnomesin)
                 launch4.putExtra("key", listSIK1[position].mKey)
+
+                launch4.putExtra("valueshift", listSIP1[position].mvalueshift)
                 startActivity(launch4)
             }
 
             sik2ListView.adapter = listSIK2Adapter
             sik2ListView.setOnItemClickListener { parent, view, position, id ->
-                val launch4 = Intent(this, BarcodeScannerActivity::class.java)
+                val launch4 = Intent(this, FormConfirmation::class.java)
                 launch4.putExtra("asal", "manpower")
                 launch4.putExtra("op1", listSIP1[position].mop1)
                 launch4.putExtra("op2", listSIP1[position].mop2)
@@ -108,6 +123,8 @@ class Adapter: AppCompatActivity() {
                 launch4.putExtra("op5", listSIP1[position].mop5)
                 launch4.putExtra("mesin", listSIP1[position].mnomesin)
                 launch4.putExtra("key", listSIP1[position].mKey)
+
+                launch4.putExtra("valueshift", listSIP1[position].mvalueshift)
                 startActivity(launch4)
             }
 
@@ -138,8 +155,12 @@ class Adapter: AppCompatActivity() {
                                 val e = key.child("op4").getValue(String::class.java)
                                 val f = key.child("op5").getValue(String::class.java)
                                 val g = key.child("key").getValue(String::class.java)
+                                val h = key.child("valueshift").getValue(Int::class.java)
+                                //val i = key.child("start").getValue(Long::class.java)
+                                //listSIP1.add(Container(a,b,c,d,e,f,g,h,i))
 
-                                listSIP1.add(Container(a,b,c,d,e,f,g))
+                                listSIP1.add(Container(a,b,c,d,e,f,g,h))
+
 
                                 Log.i("Datasnapshot", "Datasnapshot : " + key.toString())
                                 Log.i("kata f ", f.toString())
@@ -173,7 +194,11 @@ class Adapter: AppCompatActivity() {
                                 val f = key.child("op5").getValue(String::class.java)
                                 val g = key.child("key").getValue(String::class.java)
 
-                                listSIP2.add(Container(a,b,c,d,e,f,g))
+                                val h = key.child("valueshift").getValue(Int::class.java)
+                                //val i = key.child("start").getValue(Long::class.java)
+                                //listSIP1.add(Container(a,b,c,d,e,f,g,h,i))
+
+                                listSIP2.add(Container(a,b,c,d,e,f,g,h))
 
                                 Log.i("Datasnapshot", "Datasnapshot : " + key.toString())
                                 Log.i("kata f ", f.toString())
@@ -207,7 +232,9 @@ class Adapter: AppCompatActivity() {
                                 val f = key.child("op5").getValue(String::class.java)
                                 val g = key.child("key").getValue(String::class.java)
 
-                                listSIK1.add(Container(a,b,c,d,e,f,g))
+                                val h = key.child("valueshift").getValue(Int::class.java)
+
+                                listSIK1.add(Container(a,b,c,d,e,f,g,h))
 
                                 Log.i("Datasnapshot", "Datasnapshot : " + key.toString())
                                 Log.i("kata f ", f.toString())
@@ -241,7 +268,9 @@ class Adapter: AppCompatActivity() {
                                 val f = key.child("op5").getValue(String::class.java)
                                 val g = key.child("key").getValue(String::class.java)
 
-                                listSIK2.add(Container(a,b,c,d,e,f,g))
+                                val h = key.child("valueshift").getValue(Int::class.java)
+
+                                listSIK2.add(Container(a,b,c,d,e,f,g,h))
 
                                 Log.i("Datasnapshot", "Datasnapshot : " + key.toString())
                                 Log.i("kata f ", f.toString())
@@ -264,7 +293,7 @@ class Adapter: AppCompatActivity() {
     }
 
 
-    inner class listSIP1Adapter : BaseAdapter {
+    inner class ListSIP1Adapter : BaseAdapter {
 
         private var listSIP1 = ArrayList<Container>()
         private var context: Context? = null
@@ -337,7 +366,7 @@ class Adapter: AppCompatActivity() {
     }
 
 
-    inner class listSIP2Adapter : BaseAdapter {
+    inner class ListSIP2Adapter : BaseAdapter {
 
         private var listSIP2 = ArrayList<Container>()
         private var context: Context? = null
@@ -411,7 +440,7 @@ class Adapter: AppCompatActivity() {
 
 
 
-    inner class listSIK1Adapter : BaseAdapter {
+    inner class ListSIK1Adapter : BaseAdapter {
 
         private var listSIK1 = ArrayList<Container>()
         private var context: Context? = null
@@ -483,7 +512,7 @@ class Adapter: AppCompatActivity() {
 
     }
 
-    inner class listSIK2Adapter : BaseAdapter {
+    inner class ListSIK2Adapter : BaseAdapter {
 
         private var listSIK2 = ArrayList<Container>()
         private var context: Context? = null
