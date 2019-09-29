@@ -8,6 +8,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ServerValue
 import kotlinx.android.synthetic.main.activity_form_submit.*
 
 class FormSubmit : AppCompatActivity() {
@@ -42,6 +43,8 @@ class FormSubmit : AppCompatActivity() {
     lateinit var asal: String
     private var kunci: String? = null
     private var valueshift: Int= 0
+    lateinit var estimasi_jam: EditText
+    lateinit var estimasi_menit: EditText
 
     var mesin: String? = "N/A"
     var op1: String? = "N/A"
@@ -71,6 +74,7 @@ class FormSubmit : AppCompatActivity() {
         btnop3 = findViewById<ImageButton>(R.id.scanop3)
         btnop4 = findViewById<ImageButton>(R.id.scanop4)
         btnop5 = findViewById<ImageButton>(R.id.scanop5)
+        
 
         nomesin = findViewById<TextView>(R.id.nomesin)
         operator1 = findViewById<TextView>(R.id.no_op1)
@@ -154,6 +158,7 @@ class FormSubmit : AppCompatActivity() {
                 ref.child(mesinId).child("op4").setValue(operator4)
                 ref.child(mesinId).child("op5").setValue(operator5)
                 ref.child(mesinId).child("valueshift").setValue(valueshift)
+                ref.child(mesinId).child("start").setValue(ServerValue.TIMESTAMP)
 
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
 

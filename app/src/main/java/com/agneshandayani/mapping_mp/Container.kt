@@ -10,6 +10,8 @@ class Container {
     var mop5: String? = null
     var mKey: String? = null
     var mvalueshift : Int? = null
+    var mstart: Long? = null
+
 
     constructor(
         mesin: String?,
@@ -19,7 +21,9 @@ class Container {
         op4: String?,
         op5: String?,
         key: String?,
-        valueshift: Int?
+        valueshift: Int?,
+        start: Long?
+
 
     ) {
         this.mnomesin = mesin
@@ -31,6 +35,15 @@ class Container {
         this.mop5 = op5
         this.mKey = key
         this.mvalueshift = valueshift
+        this.mstart = start
+    }
+
+    fun getemstart(): Long? {
+        return mstart
+    }
+
+    fun setmstart(start: Long?) {
+        mstart = start
     }
 
 

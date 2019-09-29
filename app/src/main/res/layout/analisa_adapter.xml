@@ -46,18 +46,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:fontFamily="@font/bahnschrift"
-        android:text="Menit"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/estimasimenit"
-        app:layout_constraintStart_toEndOf="@+id/estimasimenit"
-        app:layout_constraintTop_toTopOf="@+id/estimasimenit" />
-
-    <TextView
         android:id="@+id/keteranganTV"
         android:layout_width="81dp"
         android:layout_height="wrap_content"
@@ -68,58 +56,6 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/analisarp"
         app:layout_constraintTop_toTopOf="@+id/analisarp" />
-
-    <TextView
-        android:id="@+id/estimasimenit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/bahnschrift"
-        android:text="Menit"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/estimasijam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/bahnschrift"
-        android:text="Jam"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/bahnschrift"
-        android:text="Estimasi :"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/analisarp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:fontFamily="@font/bahnschrift"
-        android:text="Jam"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/estimasijam"
-        app:layout_constraintStart_toEndOf="@+id/estimasijam"
-        app:layout_constraintTop_toTopOf="@+id/estimasijam" />
 
     <!--  android:max="100"
         android:progress="0"-->

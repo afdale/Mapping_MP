@@ -10,6 +10,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ServerValue
 import kotlinx.android.synthetic.main.activity_form_submit.*
 
 class FormConfirmation : AppCompatActivity() {
@@ -135,6 +136,7 @@ class FormConfirmation : AppCompatActivity() {
             ref.child(mesinId).child("op4").setValue(operator4)
             ref.child(mesinId).child("op5").setValue(operator5)
             ref.child(mesinId).child("valueshift").setValue(valueshift)
+            ref.child(mesinId).child("start").setValue(ServerValue.TIMESTAMP)
 
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
 

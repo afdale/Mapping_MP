@@ -74,7 +74,7 @@ class Adapter: AppCompatActivity() {
                 launch4.putExtra("mesin", listSIP1[position].mnomesin)
                 launch4.putExtra("key", listSIP1[position].mKey)
                 launch4.putExtra("valueshift", listSIP1[position].mvalueshift)
-
+                launch4.putExtra("start", listSIP1[position].mstart)
                 startActivity(launch4)
             }
 
@@ -90,8 +90,8 @@ class Adapter: AppCompatActivity() {
                 launch4.putExtra("op5", listSIP2[position].mop5)
                 launch4.putExtra("mesin", listSIP2[position].mnomesin)
                 launch4.putExtra("key", listSIP2[position].mKey)
-
-                launch4.putExtra("valueshift", listSIP1[position].mvalueshift)
+                launch4.putExtra("valueshift", listSIP2[position].mvalueshift)
+                launch4.putExtra("start", listSIP2[position].mstart)
                 startActivity(launch4)
             }
 
@@ -107,8 +107,8 @@ class Adapter: AppCompatActivity() {
                 launch4.putExtra("op5", listSIK1[position].mop5)
                 launch4.putExtra("mesin", listSIK1[position].mnomesin)
                 launch4.putExtra("key", listSIK1[position].mKey)
-
-                launch4.putExtra("valueshift", listSIP1[position].mvalueshift)
+                launch4.putExtra("valueshift", listSIK1[position].mvalueshift)
+                launch4.putExtra("start", listSIK1[position].mstart)
                 startActivity(launch4)
             }
 
@@ -116,15 +116,15 @@ class Adapter: AppCompatActivity() {
             sik2ListView.setOnItemClickListener { parent, view, position, id ->
                 val launch4 = Intent(this, FormConfirmation::class.java)
                 launch4.putExtra("asal", "manpower")
-                launch4.putExtra("op1", listSIP1[position].mop1)
-                launch4.putExtra("op2", listSIP1[position].mop2)
-                launch4.putExtra("op3", listSIP1[position].mop3)
-                launch4.putExtra("op4", listSIP1[position].mop4)
-                launch4.putExtra("op5", listSIP1[position].mop5)
-                launch4.putExtra("mesin", listSIP1[position].mnomesin)
-                launch4.putExtra("key", listSIP1[position].mKey)
-
-                launch4.putExtra("valueshift", listSIP1[position].mvalueshift)
+                launch4.putExtra("op1", listSIK2[position].mop1)
+                launch4.putExtra("op2", listSIK2[position].mop2)
+                launch4.putExtra("op3", listSIK2[position].mop3)
+                launch4.putExtra("op4", listSIK2[position].mop4)
+                launch4.putExtra("op5", listSIK2[position].mop5)
+                launch4.putExtra("mesin", listSIK2[position].mnomesin)
+                launch4.putExtra("key", listSIK2[position].mKey)
+                launch4.putExtra("valueshift", listSIK2[position].mvalueshift)
+                launch4.putExtra("start", listSIK2[position].mstart)
                 startActivity(launch4)
             }
 
@@ -156,11 +156,9 @@ class Adapter: AppCompatActivity() {
                                 val f = key.child("op5").getValue(String::class.java)
                                 val g = key.child("key").getValue(String::class.java)
                                 val h = key.child("valueshift").getValue(Int::class.java)
-                                //val i = key.child("start").getValue(Long::class.java)
-                                //listSIP1.add(Container(a,b,c,d,e,f,g,h,i))
+                                val i = key.child("start").getValue(Long::class.java)
 
-                                listSIP1.add(Container(a,b,c,d,e,f,g,h))
-
+                                listSIP1.add(Container(a,b,c,d,e,f,g,h,i))
 
                                 Log.i("Datasnapshot", "Datasnapshot : " + key.toString())
                                 Log.i("kata f ", f.toString())
@@ -193,12 +191,10 @@ class Adapter: AppCompatActivity() {
                                 val e = key.child("op4").getValue(String::class.java)
                                 val f = key.child("op5").getValue(String::class.java)
                                 val g = key.child("key").getValue(String::class.java)
-
                                 val h = key.child("valueshift").getValue(Int::class.java)
-                                //val i = key.child("start").getValue(Long::class.java)
-                                //listSIP1.add(Container(a,b,c,d,e,f,g,h,i))
+                                val i = key.child("start").getValue(Long::class.java)
 
-                                listSIP2.add(Container(a,b,c,d,e,f,g,h))
+                                listSIP2.add(Container(a,b,c,d,e,f,g,h,i))
 
                                 Log.i("Datasnapshot", "Datasnapshot : " + key.toString())
                                 Log.i("kata f ", f.toString())
@@ -231,10 +227,10 @@ class Adapter: AppCompatActivity() {
                                 val e = key.child("op4").getValue(String::class.java)
                                 val f = key.child("op5").getValue(String::class.java)
                                 val g = key.child("key").getValue(String::class.java)
-
                                 val h = key.child("valueshift").getValue(Int::class.java)
+                                val i = key.child("start").getValue(Long::class.java)
 
-                                listSIK1.add(Container(a,b,c,d,e,f,g,h))
+                                listSIK1.add(Container(a,b,c,d,e,f,g,h,i))
 
                                 Log.i("Datasnapshot", "Datasnapshot : " + key.toString())
                                 Log.i("kata f ", f.toString())
@@ -267,10 +263,10 @@ class Adapter: AppCompatActivity() {
                                 val e = key.child("op4").getValue(String::class.java)
                                 val f = key.child("op5").getValue(String::class.java)
                                 val g = key.child("key").getValue(String::class.java)
-
                                 val h = key.child("valueshift").getValue(Int::class.java)
+                                val i = key.child("start").getValue(Long::class.java)
 
-                                listSIK2.add(Container(a,b,c,d,e,f,g,h))
+                                listSIK2.add(Container(a,b,c,d,e,f,g,h,i))
 
                                 Log.i("Datasnapshot", "Datasnapshot : " + key.toString())
                                 Log.i("kata f ", f.toString())
@@ -331,6 +327,7 @@ class Adapter: AppCompatActivity() {
 
 
 
+                totalestimasi = listSIP1[position].mstart
                 val selisihgmt:Long = System.currentTimeMillis() - SystemClock.elapsedRealtime()
                 waktu = totalestimasi!! - selisihgmt
 
@@ -338,6 +335,8 @@ class Adapter: AppCompatActivity() {
                 Log.i("time","waktu : "+waktu!!.toString())
                 Log.i("time","system millis : "+System.currentTimeMillis().toString())
                 Log.i("time","system clock : "+ SystemClock.elapsedRealtime().toString())
+                vh.hitungTV.base = waktu!!
+                vh.hitungTV.start()
 
             }catch (ex2:java.lang.Exception){
                 Log.i("error data","$ex2")
@@ -404,6 +403,7 @@ class Adapter: AppCompatActivity() {
 
 
 
+                totalestimasi = listSIP2[position].mstart
                 val selisihgmt:Long = System.currentTimeMillis() - SystemClock.elapsedRealtime()
                 waktu = totalestimasi!! - selisihgmt
 
@@ -411,6 +411,8 @@ class Adapter: AppCompatActivity() {
                 Log.i("time","waktu : "+waktu!!.toString())
                 Log.i("time","system millis : "+System.currentTimeMillis().toString())
                 Log.i("time","system clock : "+ SystemClock.elapsedRealtime().toString())
+                vh.hitungTV.base = waktu!!
+                vh.hitungTV.start()
 
             }catch (ex2:java.lang.Exception){
                 Log.i("error data","$ex2")
@@ -478,6 +480,7 @@ class Adapter: AppCompatActivity() {
 
 
 
+                totalestimasi = listSIK1[position].mstart
                 val selisihgmt:Long = System.currentTimeMillis() - SystemClock.elapsedRealtime()
                 waktu = totalestimasi!! - selisihgmt
 
@@ -485,6 +488,8 @@ class Adapter: AppCompatActivity() {
                 Log.i("time","waktu : "+waktu!!.toString())
                 Log.i("time","system millis : "+System.currentTimeMillis().toString())
                 Log.i("time","system clock : "+ SystemClock.elapsedRealtime().toString())
+                vh.hitungTV.base = waktu!!
+                vh.hitungTV.start()
 
             }catch (ex2:java.lang.Exception){
                 Log.i("error data","$ex2")
@@ -537,19 +542,14 @@ class Adapter: AppCompatActivity() {
                 vh = view.tag as ViewHolder
             }
 
-
-
-            /*   displaypProgressBar.setMax(100)[position]
-               displaypProgressBar.setProgress(20)*/
             try {
 
                 vh.nomesintv.text = listSIK2[position].mnomesin
-                vh.keteranganTV.text = listSIK2[position].mop1/*
-                vh.estimasijam.text = listProblemOnprogress[position].mestimasijam.toString()
-                vh.estimasimenit.text = listProblemOnprogress[position].mestimasimenit.toString()*/
+                vh.keteranganTV.text = listSIK2[position].mop1
 
 
 
+                totalestimasi = listSIK2[position].mstart
                 val selisihgmt:Long = System.currentTimeMillis() - SystemClock.elapsedRealtime()
                 waktu = totalestimasi!! - selisihgmt
 
@@ -557,6 +557,8 @@ class Adapter: AppCompatActivity() {
                 Log.i("time","waktu : "+waktu!!.toString())
                 Log.i("time","system millis : "+System.currentTimeMillis().toString())
                 Log.i("time","system clock : "+ SystemClock.elapsedRealtime().toString())
+                vh.hitungTV.base = waktu!!
+                vh.hitungTV.start()
 
             }catch (ex2:java.lang.Exception){
                 Log.i("error data","$ex2")
@@ -588,15 +590,13 @@ class Adapter: AppCompatActivity() {
         val nomesintv: TextView
         val keteranganTV: TextView
         val hitungTV: Chronometer
-        val estimasijam : TextView
-        val estimasimenit : TextView
+
 
         init {
             this.nomesintv = view?.findViewById<TextView>(R.id.nomesinTV) as TextView
             this.keteranganTV = view.findViewById<TextView>(R.id.keteranganTV) as TextView
             this.hitungTV = view.findViewById<Chronometer>(R.id.hitungTV) as Chronometer
-            this.estimasijam = view.findViewById<TextView>(R.id.estimasijam) as TextView
-            this.estimasimenit = view.findViewById<TextView>(R.id.estimasimenit) as TextView
+
         }
     }
 
