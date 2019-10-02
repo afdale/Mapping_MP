@@ -273,7 +273,8 @@ class FormUpdate : AppCompatActivity() {
                     z = "Please check your internet connection"
                 } else {
                     val query =
-                        "INSERT INTO skillmapping (nomesin,operator1,operator2,operator3,operator4,operator5) VALUES ('$mesin','$op1','$op2','$op3','$op4','$op5')"
+                        "INSERT INTO skillmapping (nomesin,operator1,operator2,operator3,operator4,operator5)" +
+                                "VALUES ('$mesin','$op1','$op2','$op3','$op4','$op5')"
                     val stmt = con.createStatement()
                     stmt.executeUpdate(query)
                     z = "Upload successfull"
