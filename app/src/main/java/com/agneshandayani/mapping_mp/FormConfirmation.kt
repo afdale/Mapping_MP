@@ -38,7 +38,7 @@ class FormConfirmation : AppCompatActivity() {
     lateinit var operator5: TextView
 
     lateinit var asal: String
-    private var kunci: String? = null
+    lateinit var kunci: String
     private var valueshift: Int= 0
 
     var mesin: String? = "N/A"
@@ -109,10 +109,10 @@ class FormConfirmation : AppCompatActivity() {
             startActivityForResult(intent, 6)
         }
         btnFinish.setOnClickListener {
-
+            Douploadreport(this@FormConfirmation).execute()
             savedata()
-            val intent = Intent(this, Adapter::class.java)
-            startActivity(intent)
+
+            finish()
         }
 
     }
@@ -241,7 +241,7 @@ class FormConfirmation : AppCompatActivity() {
         }
     }
 
-    inner class Douploadreport(var activity: FormUpdate) : AsyncTask<String, String, String>() {
+    inner class Douploadreport(var activity: FormConfirmation) : AsyncTask<String, String, String>() {
         var dialog = Dialog(activity, android.R.style.Theme_Translucent_NoTitleBar)
         private var z = ""
         internal var isSuccess = false
@@ -262,7 +262,8 @@ class FormConfirmation : AppCompatActivity() {
                     z = "Please check your internet connection"
                 } else {
                     val query =
-                        "INSERT INTO skillmapping (nomesin,operator1,operator2,operator3,operator4,operator5) VALUES ('$mesin','$op1','$op2','$op3','$op4','$op5')"
+                        "INSERT INTO skillmapping (nomesin,operator1,operator2,operator3,operator4,operator5)" +
+                                "VALUES ('$mesin','$op1','$op2','$op3','$op4','$op5')"
                     val stmt = con.createStatement()
                     stmt.executeUpdate(query)
                     z = "Upload successfull"
@@ -281,7 +282,7 @@ class FormConfirmation : AppCompatActivity() {
 
             if (isSuccess) {
                 FirebaseDatabase.getInstance().getReference().child("mapping").child("manpower")
-                    .child("ABSENSIK2").removeValue()
+                    .child("ABSENSIK2").child(kunci).removeValue()
                 this@FormConfirmation.finish()
             }
         }

@@ -38,7 +38,7 @@ class FormUpdate : AppCompatActivity() {
     lateinit var operator5: TextView
 
     lateinit var asal: String
-    private var kunci: String? = null
+    lateinit var kunci: String
     private var valueshift: Int= 0
 
     var mesin: String? = "N/A"
@@ -117,10 +117,10 @@ class FormUpdate : AppCompatActivity() {
             startActivityForResult(intent, 6)
         }
         btnfinish!!.setOnClickListener {
-            Douploadreport(this).execute()
+            Douploadreport(this@FormUpdate).execute()
             savedata()
-            val intent = Intent(this, Adapter::class.java)
-            startActivity(intent)
+
+
             finish()
         }
 
@@ -293,7 +293,7 @@ class FormUpdate : AppCompatActivity() {
 
             if (isSuccess) {
                 FirebaseDatabase.getInstance().getReference().child("mapping").child("manpower")
-                    .child("ABSENSIP1").removeValue()
+                    .child("ABSENSIP1").child(kunci).removeValue()
                 this@FormUpdate.finish()
             }
         }

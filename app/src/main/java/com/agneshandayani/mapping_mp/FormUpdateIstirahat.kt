@@ -38,7 +38,7 @@ class FormUpdateIstirahat : AppCompatActivity() {
     lateinit var operator5: TextView
 
     lateinit var asal: String
-    private var kunci: String? = null
+    lateinit var kunci: String
     private var valueshift: Int= 0
 
     var mesin: String? = "N/A"
@@ -109,10 +109,10 @@ class FormUpdateIstirahat : AppCompatActivity() {
             startActivityForResult(intent, 6)
         }
         btnFinish.setOnClickListener {
-
+            Douploadreport(this@FormUpdateIstirahat).execute()
             savedata()
-            val intent = Intent(this, Adapter::class.java)
-            startActivity(intent)
+
+            finish()
         }
 
     }
@@ -242,7 +242,7 @@ class FormUpdateIstirahat : AppCompatActivity() {
 
 
 
-    inner class Douploadreport(var activity: FormUpdate) : AsyncTask<String, String, String>() {
+    inner class Douploadreport(var activity: FormUpdateIstirahat) : AsyncTask<String, String, String>() {
         var dialog = Dialog(activity, android.R.style.Theme_Translucent_NoTitleBar)
         private var z = ""
         internal var isSuccess = false
@@ -283,7 +283,7 @@ class FormUpdateIstirahat : AppCompatActivity() {
 
             if (isSuccess) {
                 FirebaseDatabase.getInstance().getReference().child("mapping").child("manpower")
-                    .child("ABSENSIP2").removeValue()
+                    .child("ABSENSIP2").child(kunci).removeValue()
                 this@FormUpdateIstirahat.finish()
             }
         }

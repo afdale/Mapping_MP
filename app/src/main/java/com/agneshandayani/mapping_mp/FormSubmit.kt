@@ -129,7 +129,6 @@ class FormSubmit : AppCompatActivity() {
                 valueshift = 3
             }
             Toast.makeText(this, "${valueshift}", Toast.LENGTH_LONG).show()
-
             savedata()
             val intent = Intent(this, Adapter::class.java)
             startActivity(intent)
