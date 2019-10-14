@@ -50,11 +50,19 @@ class FormUpdateIstirahat : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_form_update)
-
+        setContentView(R.layout.activity_form_update_istirahat)
+        connectionClass = ConnectionClass()
         ref = FirebaseDatabase.getInstance().getReference().child("mapping").child("manpower")
             .child("ABSENSIK1")
+
         kunci = getIntent().getStringExtra("key")
+        asal = getIntent().getStringExtra("asal")
+        mesin = getIntent().getStringExtra("mesin")
+        op1 = getIntent().getStringExtra("operator1")
+        op2 = getIntent().getStringExtra("operator2")
+        op3 = getIntent().getStringExtra("operator3")
+        op4 = getIntent().getStringExtra("operator4")
+        op5 = getIntent().getStringExtra("operator5")
 
         btnfinish = findViewById<ImageButton>(R.id.btnFinish)
         btnmc = findViewById<ImageButton>(R.id.scanmc)
@@ -108,10 +116,11 @@ class FormUpdateIstirahat : AppCompatActivity() {
             intent.putExtra("asal", "op5")
             startActivityForResult(intent, 6)
         }
-        btnFinish.setOnClickListener {
-            Douploadreport(this@FormUpdateIstirahat).execute()
+        btnfinish!!.setOnClickListener {
+            Douploadreport(this).execute()
             savedata()
-
+            val intent = Intent(this, Adapter::class.java)
+            startActivity(intent)
             finish()
         }
 
@@ -136,6 +145,7 @@ class FormUpdateIstirahat : AppCompatActivity() {
             ref.child(mesinId).child("op4").setValue(operator4)
             ref.child(mesinId).child("op5").setValue(operator5)
             ref.child(mesinId).child("valueshift").setValue(valueshift)
+
             ref.child(mesinId).child("start").setValue(ServerValue.TIMESTAMP)
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
 
@@ -263,8 +273,7 @@ class FormUpdateIstirahat : AppCompatActivity() {
                     z = "Please check your internet connection"
                 } else {
                     val query =
-                        "INSERT INTO skillmapping (nomesin,operator1,operator2,operator3,operator4,operator5)" +
-                                "VALUES ('$mesin','$op1','$op2','$op3','$op4','$op5')"
+                        "INSERT INTO skillmapping (nomesin,operator1,operator2,operator3,operator4,operator5,valueshift) VALUES ('$mesin','$op1','$op2','$op3','$op4','$op5','$valueshift')"
                     val stmt = con.createStatement()
                     stmt.executeUpdate(query)
                     z = "Upload successfull"
@@ -288,8 +297,4 @@ class FormUpdateIstirahat : AppCompatActivity() {
             }
         }
     }
-    fun goCancelProgress(view: View) {
-        finish()
-    }
-
 }

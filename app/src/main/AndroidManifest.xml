@@ -8,11 +8,12 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="ASKI Mapping Man Power"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FormConfirmation"></activity>
+        <activity android:name=".FormFinish"></activity>
+        <activity android:name=".FormConfirmation" />
         <activity android:name=".FormUpdateIstirahatKedua" />
         <activity android:name=".FormUpdateIstirahat" />
         <activity android:name=".FormSubmit" />

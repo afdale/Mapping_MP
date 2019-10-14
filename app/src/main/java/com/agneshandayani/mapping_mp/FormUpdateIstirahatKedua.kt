@@ -5,8 +5,9 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
-import android.view.View
-import android.widget.*
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -37,8 +38,8 @@ class FormUpdateIstirahatKedua : AppCompatActivity() {
     lateinit var operator4: TextView
     lateinit var operator5: TextView
 
-    lateinit var asal: String
-    lateinit var kunci: String
+    private var asal: String? = null
+    private var kunci: String? = null
     private var valueshift: Int= 0
 
     var mesin: String? = "N/A"
@@ -50,11 +51,19 @@ class FormUpdateIstirahatKedua : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_form_update)
-
+        setContentView(R.layout.activity_form_update_istirahat_kedua)
+        connectionClass = ConnectionClass()
         ref = FirebaseDatabase.getInstance().getReference().child("mapping").child("manpower")
             .child("ABSENSIK2")
+
         kunci = getIntent().getStringExtra("key")
+        asal = getIntent().getStringExtra("asal")
+        mesin = getIntent().getStringExtra("mesin")
+        op1 = getIntent().getStringExtra("operator1")
+        op2 = getIntent().getStringExtra("operator2")
+        op3 = getIntent().getStringExtra("operator3")
+        op4 = getIntent().getStringExtra("operator4")
+        op5 = getIntent().getStringExtra("operator5")
 
         btnfinish = findViewById<ImageButton>(R.id.btnFinish)
         btnmc = findViewById<ImageButton>(R.id.scanmc)
@@ -108,10 +117,11 @@ class FormUpdateIstirahatKedua : AppCompatActivity() {
             intent.putExtra("asal", "op5")
             startActivityForResult(intent, 6)
         }
-        btnFinish.setOnClickListener {
-            Douploadreport(this@FormUpdateIstirahatKedua).execute()
+        btnfinish!!.setOnClickListener {
+            Douploadreport(this).execute()
             savedata()
-
+            val intent = Intent(this, Adapter::class.java)
+            startActivity(intent)
             finish()
         }
 
@@ -136,8 +146,8 @@ class FormUpdateIstirahatKedua : AppCompatActivity() {
             ref.child(mesinId).child("op4").setValue(operator4)
             ref.child(mesinId).child("op5").setValue(operator5)
             ref.child(mesinId).child("valueshift").setValue(valueshift)
-            ref.child(mesinId).child("start").setValue(ServerValue.TIMESTAMP)
 
+            ref.child(mesinId).child("start").setValue(ServerValue.TIMESTAMP)
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
 
             nomesin.setText("")
@@ -264,8 +274,7 @@ class FormUpdateIstirahatKedua : AppCompatActivity() {
                     z = "Please check your internet connection"
                 } else {
                     val query =
-                        "INSERT INTO skillmapping (nomesin,operator1,operator2,operator3,operator4,operator5) " +
-                                "VALUES ('$mesin','$op1','$op2','$op3','$op4','$op5')"
+                        "INSERT INTO skillmapping (nomesin,operator1,operator2,operator3,operator4,operator5,valueshift) VALUES ('$mesin','$op1','$op2','$op3','$op4','$op5','$valueshift')"
                     val stmt = con.createStatement()
                     stmt.executeUpdate(query)
                     z = "Upload successfull"
@@ -284,13 +293,9 @@ class FormUpdateIstirahatKedua : AppCompatActivity() {
 
             if (isSuccess) {
                 FirebaseDatabase.getInstance().getReference().child("mapping").child("manpower")
-                    .child("ABSENSIK1").child(kunci).removeValue()
+                    .child("ABSENSIK1").child(kunci!!).removeValue()
                 this@FormUpdateIstirahatKedua.finish()
             }
         }
     }
-    fun goCancelProgress(view: View) {
-        finish()
-    }
-
 }

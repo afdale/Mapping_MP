@@ -37,8 +37,8 @@ class FormConfirmation : AppCompatActivity() {
     lateinit var operator4: TextView
     lateinit var operator5: TextView
 
-    lateinit var asal: String
-    lateinit var kunci: String
+    private var asal: String? =null
+    private var kunci: String? =null
     private var valueshift: Int= 0
 
     var mesin: String? = "N/A"
@@ -50,11 +50,19 @@ class FormConfirmation : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_form_update)
-
+        setContentView(R.layout.activity_form_confirmation)
+        connectionClass = ConnectionClass()
         ref = FirebaseDatabase.getInstance().getReference().child("mapping").child("manpower")
-            .child("ABSENCONFIRM")
+            .child("ABSENAKHIR")
+
         kunci = getIntent().getStringExtra("key")
+        asal = getIntent().getStringExtra("asal")
+        mesin = getIntent().getStringExtra("mesin")
+        op1 = getIntent().getStringExtra("operator1")
+        op2 = getIntent().getStringExtra("operator2")
+        op3 = getIntent().getStringExtra("operator3")
+        op4 = getIntent().getStringExtra("operator4")
+        op5 = getIntent().getStringExtra("operator5")
 
         btnfinish = findViewById<ImageButton>(R.id.btnFinish)
         btnmc = findViewById<ImageButton>(R.id.scanmc)
@@ -108,10 +116,11 @@ class FormConfirmation : AppCompatActivity() {
             intent.putExtra("asal", "op5")
             startActivityForResult(intent, 6)
         }
-        btnFinish.setOnClickListener {
-            Douploadreport(this@FormConfirmation).execute()
+        btnfinish!!.setOnClickListener {
+            Douploadreport(this).execute()
             savedata()
-
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
             finish()
         }
 
@@ -136,8 +145,8 @@ class FormConfirmation : AppCompatActivity() {
             ref.child(mesinId).child("op4").setValue(operator4)
             ref.child(mesinId).child("op5").setValue(operator5)
             ref.child(mesinId).child("valueshift").setValue(valueshift)
-            ref.child(mesinId).child("start").setValue(ServerValue.TIMESTAMP)
 
+            ref.child(mesinId).child("start").setValue(ServerValue.TIMESTAMP)
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
 
             nomesin.setText("")
@@ -241,6 +250,8 @@ class FormConfirmation : AppCompatActivity() {
         }
     }
 
+
+
     inner class Douploadreport(var activity: FormConfirmation) : AsyncTask<String, String, String>() {
         var dialog = Dialog(activity, android.R.style.Theme_Translucent_NoTitleBar)
         private var z = ""
@@ -262,8 +273,7 @@ class FormConfirmation : AppCompatActivity() {
                     z = "Please check your internet connection"
                 } else {
                     val query =
-                        "INSERT INTO skillmapping (nomesin,operator1,operator2,operator3,operator4,operator5)" +
-                                "VALUES ('$mesin','$op1','$op2','$op3','$op4','$op5')"
+                        "INSERT INTO skillmapping (nomesin,operator1,operator2,operator3,operator4,operator5,valueshift) VALUES ('$mesin','$op1','$op2','$op3','$op4','$op5','$valueshift')"
                     val stmt = con.createStatement()
                     stmt.executeUpdate(query)
                     z = "Upload successfull"
@@ -282,15 +292,9 @@ class FormConfirmation : AppCompatActivity() {
 
             if (isSuccess) {
                 FirebaseDatabase.getInstance().getReference().child("mapping").child("manpower")
-                    .child("ABSENSIK2").child(kunci).removeValue()
+                    .child("ABSENSIK2").child(kunci!!).removeValue()
                 this@FormConfirmation.finish()
             }
         }
     }
-
-
-    fun goCancelProgress(view: View) {
-        finish()
-    }
-
 }

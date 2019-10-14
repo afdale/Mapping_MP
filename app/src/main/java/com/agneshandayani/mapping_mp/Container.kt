@@ -12,7 +12,6 @@ class Container {
     var mvalueshift : Int? = null
     var mstart: Long? = null
 
-
     constructor(
         mesin: String?,
         op1: String?,
@@ -23,7 +22,6 @@ class Container {
         key: String?,
         valueshift: Int?,
         start: Long?
-
 
     ) {
         this.mnomesin = mesin
@@ -37,7 +35,6 @@ class Container {
         this.mvalueshift = valueshift
         this.mstart = start
     }
-
     fun getemstart(): Long? {
         return mstart
     }
@@ -45,7 +42,6 @@ class Container {
     fun setmstart(start: Long?) {
         mstart = start
     }
-
 
     fun getKey(): String? {
         return mKey

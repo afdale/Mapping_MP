@@ -43,8 +43,6 @@ class FormSubmit : AppCompatActivity() {
     lateinit var asal: String
     private var kunci: String? = null
     private var valueshift: Int= 0
-    lateinit var estimasi_jam: EditText
-    lateinit var estimasi_menit: EditText
 
     var mesin: String? = "N/A"
     var op1: String? = "N/A"
@@ -60,6 +58,7 @@ class FormSubmit : AppCompatActivity() {
         ref = FirebaseDatabase.getInstance().getReference().child("mapping").child("manpower")
             .child("ABSENSIP1")
         kunci = getIntent().getStringExtra("key")
+
         //keterangan:masukin data ke firebase
 
         radiogroup = findViewById<RadioGroup>(R.id.radioShift)
@@ -74,7 +73,6 @@ class FormSubmit : AppCompatActivity() {
         btnop3 = findViewById<ImageButton>(R.id.scanop3)
         btnop4 = findViewById<ImageButton>(R.id.scanop4)
         btnop5 = findViewById<ImageButton>(R.id.scanop5)
-        
 
         nomesin = findViewById<TextView>(R.id.nomesin)
         operator1 = findViewById<TextView>(R.id.no_op1)
@@ -129,8 +127,9 @@ class FormSubmit : AppCompatActivity() {
                 valueshift = 3
             }
             Toast.makeText(this, "${valueshift}", Toast.LENGTH_LONG).show()
+
             savedata()
-            val intent = Intent(this, Adapter::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
 
@@ -157,6 +156,7 @@ class FormSubmit : AppCompatActivity() {
                 ref.child(mesinId).child("op4").setValue(operator4)
                 ref.child(mesinId).child("op5").setValue(operator5)
                 ref.child(mesinId).child("valueshift").setValue(valueshift)
+
                 ref.child(mesinId).child("start").setValue(ServerValue.TIMESTAMP)
 
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
@@ -261,9 +261,4 @@ class FormSubmit : AppCompatActivity() {
                 }
             }
         }
-
-    fun goCancelProgress(view: View) {
-        finish()
-    }
-
 }

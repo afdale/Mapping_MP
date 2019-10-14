@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "271583063764",
-    "firebase_url": "https://askishopfloormoldshop.firebaseio.com",
-    "project_id": "askishopfloormoldshop",
-    "storage_bucket": "askishopfloormoldshop.appspot.com"
+    "project_number": "95732564723",
+    "firebase_url": "https://skill-mapping-b47c7.firebaseio.com",
+    "project_id": "skill-mapping-b47c7",
+    "storage_bucket": "skill-mapping-b47c7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:271583063764:android:7c6fe014c589bc70e61541",
+        "mobilesdk_app_id": "1:95732564723:android:9b0944cf1bf09ae9bd2d86",
         "android_client_info": {
           "package_name": "com.agneshandayani.mapping_mp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "271583063764-kktve5p6hme8sq37ckfggkecmcc3vag8.apps.googleusercontent.com",
+          "client_id": "95732564723-1n3f0ggoh17vlmpf0e6i2jqgd10l7nt4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.agneshandayani.mapping_mp",
-            "certificate_hash": "051d50c5c1eb4a8eb2bfc49dc9116cd5b0f52182"
+            "certificate_hash": "4681ea9a127917b19e2674b2ac5011a4f8d11f87"
           }
         },
         {
-          "client_id": "271583063764-c5qrt5jb7glq1k6qslf8lfqsqvljrkvg.apps.googleusercontent.com",
+          "client_id": "95732564723-22vikbvbli3v08bbf38hltsiptscibjg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDtuzSf9-Ubgx5fNNbhZlyb2A5PU6-jQ6k"
+          "current_key": "AIzaSyBGkgd4RaWRnBiuSI6n9beTHl31y8NS4LU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "271583063764-c5qrt5jb7glq1k6qslf8lfqsqvljrkvg.apps.googleusercontent.com",
+              "client_id": "95732564723-22vikbvbli3v08bbf38hltsiptscibjg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -45,146 +45,35 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:271583063764:android:e426fb53ec61fe5ae61541",
+        "mobilesdk_app_id": "1:95732564723:android:7c31b9cc2e9c4a56",
         "android_client_info": {
-          "package_name": "com.agneshandayani.viewermoldshop"
+          "package_name": "com.agneshandayani.skillmapping"
         }
       },
       "oauth_client": [
         {
-          "client_id": "271583063764-9mm3pp3sqn87cvjuiq7ibdmr4e29b6ta.apps.googleusercontent.com",
+          "client_id": "95732564723-7j0pjp1mr5l8iua0lrvop2c2pt65neec.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.agneshandayani.viewermoldshop",
-            "certificate_hash": "051d50c5c1eb4a8eb2bfc49dc9116cd5b0f52182"
+            "package_name": "com.agneshandayani.skillmapping",
+            "certificate_hash": "4681ea9a127917b19e2674b2ac5011a4f8d11f87"
           }
         },
         {
-          "client_id": "271583063764-c5qrt5jb7glq1k6qslf8lfqsqvljrkvg.apps.googleusercontent.com",
+          "client_id": "95732564723-22vikbvbli3v08bbf38hltsiptscibjg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDtuzSf9-Ubgx5fNNbhZlyb2A5PU6-jQ6k"
+          "current_key": "AIzaSyBGkgd4RaWRnBiuSI6n9beTHl31y8NS4LU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "271583063764-c5qrt5jb7glq1k6qslf8lfqsqvljrkvg.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:271583063764:android:a9aef339cfae227b",
-        "android_client_info": {
-          "package_name": "com.aski.industrialrevolution.askipe"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "271583063764-uto4her89io4a73iib42g3mkh2iphupp.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.aski.industrialrevolution.askipe",
-            "certificate_hash": "051d50c5c1eb4a8eb2bfc49dc9116cd5b0f52182"
-          }
-        },
-        {
-          "client_id": "271583063764-c5qrt5jb7glq1k6qslf8lfqsqvljrkvg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDtuzSf9-Ubgx5fNNbhZlyb2A5PU6-jQ6k"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "271583063764-c5qrt5jb7glq1k6qslf8lfqsqvljrkvg.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:271583063764:android:0e1abf27d5738d82",
-        "android_client_info": {
-          "package_name": "com.aski.industrialrevolution.askishopfloormanagement"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "271583063764-eufmn6avbm0ev0n3guo4j5v25bvbsepg.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.aski.industrialrevolution.askishopfloormanagement",
-            "certificate_hash": "051d50c5c1eb4a8eb2bfc49dc9116cd5b0f52182"
-          }
-        },
-        {
-          "client_id": "271583063764-c5qrt5jb7glq1k6qslf8lfqsqvljrkvg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDtuzSf9-Ubgx5fNNbhZlyb2A5PU6-jQ6k"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "271583063764-c5qrt5jb7glq1k6qslf8lfqsqvljrkvg.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:271583063764:android:70437657be2f10df",
-        "android_client_info": {
-          "package_name": "com.example.aski_integrated"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "271583063764-9sj6nnaf51f19vc2bprdqoqes5f0en7v.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.aski_integrated",
-            "certificate_hash": "051d50c5c1eb4a8eb2bfc49dc9116cd5b0f52182"
-          }
-        },
-        {
-          "client_id": "271583063764-c5qrt5jb7glq1k6qslf8lfqsqvljrkvg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDtuzSf9-Ubgx5fNNbhZlyb2A5PU6-jQ6k"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "271583063764-c5qrt5jb7glq1k6qslf8lfqsqvljrkvg.apps.googleusercontent.com",
+              "client_id": "95732564723-22vikbvbli3v08bbf38hltsiptscibjg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

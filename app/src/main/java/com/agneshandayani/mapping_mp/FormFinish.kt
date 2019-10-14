@@ -10,10 +10,9 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ServerValue
-import kotlinx.android.synthetic.main.activity_form_submit.*
+import kotlinx.android.synthetic.main.activity_form_finish.*
 
-class FormUpdate : AppCompatActivity() {
+class FormFinish : AppCompatActivity() {
 
     lateinit var ref: DatabaseReference
     lateinit var connectionClass: ConnectionClass
@@ -38,7 +37,7 @@ class FormUpdate : AppCompatActivity() {
     lateinit var operator5: TextView
 
     private var asal: String? = null
-    lateinit var kunci: String
+    private var kunci: String? = null
     private var valueshift: Int= 0
 
     var mesin: String? = "N/A"
@@ -50,10 +49,10 @@ class FormUpdate : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_form_update)
+        setContentView(R.layout.activity_form_finish)
         connectionClass = ConnectionClass()
         ref = FirebaseDatabase.getInstance().getReference().child("mapping").child("manpower")
-            .child("ABSENSIP2")
+            .child("ABSENPULANG")
 
         kunci = getIntent().getStringExtra("key")
         asal = getIntent().getStringExtra("asal")
@@ -87,39 +86,39 @@ class FormUpdate : AppCompatActivity() {
         operator5.text = op5
 
         btnmc!!.setOnClickListener {
-            val intent = Intent(this@FormUpdate, BarcodeScannerActivity::class.java)
+            val intent = Intent(this@FormFinish, BarcodeScannerActivity::class.java)
             intent.putExtra("asal", "mesin")
             startActivityForResult(intent, 1)
         }
         btnop1!!.setOnClickListener {
-            val intent = Intent(this@FormUpdate, BarcodeScannerActivity::class.java)
+            val intent = Intent(this@FormFinish, BarcodeScannerActivity::class.java)
             intent.putExtra("asal", "op1")
             startActivityForResult(intent, 2)
         }
         btnop2!!.setOnClickListener {
-            val intent = Intent(this@FormUpdate, BarcodeScannerActivity::class.java)
+            val intent = Intent(this@FormFinish, BarcodeScannerActivity::class.java)
             intent.putExtra("asal", "op2")
             startActivityForResult(intent, 3)
         }
         btnop3!!.setOnClickListener {
-            val intent = Intent(this@FormUpdate, BarcodeScannerActivity::class.java)
+            val intent = Intent(this@FormFinish, BarcodeScannerActivity::class.java)
             intent.putExtra("asal", "op3")
             startActivityForResult(intent, 4)
         }
         btnop4!!.setOnClickListener {
-            val intent = Intent(this@FormUpdate, BarcodeScannerActivity::class.java)
+            val intent = Intent(this@FormFinish, BarcodeScannerActivity::class.java)
             intent.putExtra("asal", "op4")
             startActivityForResult(intent, 5)
         }
         btnop5!!.setOnClickListener {
-            val intent = Intent(this@FormUpdate, BarcodeScannerActivity::class.java)
+            val intent = Intent(this@FormFinish, BarcodeScannerActivity::class.java)
             intent.putExtra("asal", "op5")
             startActivityForResult(intent, 6)
         }
         btnfinish!!.setOnClickListener {
             Douploadreport(this).execute()
             savedata()
-            val intent = Intent(this, Adapter::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -145,7 +144,6 @@ class FormUpdate : AppCompatActivity() {
             ref.child(mesinId).child("op4").setValue(operator4)
             ref.child(mesinId).child("op5").setValue(operator5)
             ref.child(mesinId).child("valueshift").setValue(valueshift)
-            ref.child(mesinId).child("start").setValue(ServerValue.TIMESTAMP)
 
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
 
@@ -252,7 +250,7 @@ class FormUpdate : AppCompatActivity() {
 
 
 
-    inner class Douploadreport(var activity: FormUpdate) : AsyncTask<String, String, String>() {
+    inner class Douploadreport(var activity: FormFinish) : AsyncTask<String, String, String>() {
         var dialog = Dialog(activity, android.R.style.Theme_Translucent_NoTitleBar)
         private var z = ""
         internal var isSuccess = false
@@ -273,7 +271,7 @@ class FormUpdate : AppCompatActivity() {
                     z = "Please check your internet connection"
                 } else {
                     val query =
-                        "INSERT INTO skillmapping (nomesin,operator1,operator2,operator3,operator4,operator5,valueshift) VALUES ('$mesin','$op1','$op2','$op3','$op4','$op5','$valueshift')"
+                        "INSERT INTO skillmapping (nomesin,operator1,operator2,operator3,operator4,operator5) VALUES ('$mesin','$op1','$op2','$op3','$op4','$op5')"
                     val stmt = con.createStatement()
                     stmt.executeUpdate(query)
                     z = "Upload successfull"
@@ -288,12 +286,12 @@ class FormUpdate : AppCompatActivity() {
 
         override fun onPostExecute(s: String) {
             dialog.dismiss()
-            Toast.makeText(this@FormUpdate, "" + z, Toast.LENGTH_LONG).show()
+            Toast.makeText(this@FormFinish, "" + z, Toast.LENGTH_LONG).show()
 
             if (isSuccess) {
                 FirebaseDatabase.getInstance().getReference().child("mapping").child("manpower")
-                    .child("ABSENSIP1").child(kunci).removeValue()
-                this@FormUpdate.finish()
+                    .child("ABSENCONFIRMATION").child(kunci!!).removeValue()
+                this@FormFinish.finish()
             }
         }
     }
