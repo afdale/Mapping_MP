@@ -20,6 +20,8 @@ class Adapter: AppCompatActivity() {
 
 
     private var btnfinish: ImageButton? = null
+/*    private var sort: Button? = null
+    private var sortAscending = true*/
 
     private var listSIP1 = ArrayList<Container>()
     private lateinit var listSIP1Adapter: BaseAdapter
@@ -41,6 +43,7 @@ class Adapter: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.onprogress_submit)
+
 
         btnfinish = findViewById<ImageButton>(R.id.btnFinish)
         btnFinish.setOnClickListener {
